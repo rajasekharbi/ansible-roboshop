@@ -19,7 +19,7 @@
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
-  - name: disable proctected mode
+  - name: disable proctected mode #Update protected-mode from yes to no in /etc/redis/redis.conf
     ansible.builtin.lineinfile:
       path: /etc/redis/redis.conf
       regexp: 'protected-mode'
