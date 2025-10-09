@@ -42,7 +42,7 @@
       dest: /tmp/catalogue.zip
 
   - name: extract catalogue application
-    ansible.builtin.unarchive:
+    ansible.builtin.unarchive:  #unzippping==unacrchive
       src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes
@@ -56,7 +56,7 @@
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
 
-  - name: copy mongo repo
+  - name: copy mongo repo  #connecting to mongodb
     ansible.builtin.copy:
       src: mongo.repo
       dest: /etc/yum.repos.d/mongo.repo
@@ -68,32 +68,32 @@
 
   - name: connnect to mongodb catalogue
     ansible.builtin.command: mongosh mongodb.daws86s.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
-    register: catalogue_output
+    register: catalogue_output  # above command is stores here
 
-  - name: evaluate cataalogue database
-    community.mongodb.mongodb_shell:
-      login_host: mongodb.daws86s.fun
-      eval: db.getMongo().getDBNames().indexOf('catalogue')
-    register: catalogue_output
+  # - name: evaluate cataalogue database
+  #   community.mongodb.mongodb_shell:
+  #     login_host: mongodb.daws86s.fun
+  #     eval: db.getMongo().getDBNames().indexOf('catalogue')
+  #   register: catalogue_output
 
-  - name: print catalogue output
-    ansible.builtin.debug:
-      msg: "{{ catalogue_output }}"
+  # - name: print catalogue output
+  #   ansible.builtin.debug:
+  #     msg: "{{ catalogue_output }}"
 
-  # - name: load products into mongodb
-  #   ansible.builtin.shell: mongosh --host mongodb.daws86s.fun </app/db/master-data.js
-  #   when: catalogue_output.stdout | int < 0
+  # # - name: load products into mongodb
+  # #   ansible.builtin.shell: mongosh --host mongodb.daws86s.fun </app/db/master-data.js
+  # #   when: catalogue_output.stdout | int < 0
 
-  # # - name: start and enable cataalogue
-  # #   ansible.builtin.service:
+  # # # - name: start and enable cataalogue
+  # # #   ansible.builtin.service:
+  # # #     name: catalogue
+  # # #     enabled: yes
+  # # #     state: started
+
+  # # - name: daemon reload enable and start
+  # #   ansible.builtin.systemd_service:
   # #     name: catalogue
-  # #     enabled: yes
+  # #     enabled: true
   # #     state: started
-
-  # - name: daemon reload enable and start
-  #   ansible.builtin.systemd_service:
-  #     name: catalogue
-  #     enabled: true
-  #     state: started
-  #     daemon_reload: true
+  # #     daemon_reload: true
   
