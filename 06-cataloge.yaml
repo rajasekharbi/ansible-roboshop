@@ -56,19 +56,19 @@
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
 
-  - name: copy mongo repo  #connecting to mongodb
-    ansible.builtin.copy:
-      src: mongo.repo
-      dest: /etc/yum.repos.d/mongo.repo
+  # - name: copy mongo repo  #connecting to mongodb
+  #   ansible.builtin.copy:
+  #     src: mongo.repo
+  #     dest: /etc/yum.repos.d/mongo.repo
 
-  - name: install mongodb client
-    ansible.builtin.package:
-      name: mongodb-mongosh
-      state: present
+  # - name: install mongodb client
+  #   ansible.builtin.package:
+  #     name: mongodb-mongosh
+  #     state: present
 
-  - name: connnect to mongodb catalogue
-    ansible.builtin.command: mongosh mongodb.rajasekhartech.site --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
-    register: catalogue_output  # above command is stores here
+  # - name: connnect to mongodb catalogue
+  #   ansible.builtin.command: mongosh mongodb.rajasekhartech.site --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+  #   register: catalogue_output  # above command is stores here
 
   # - name: evaluate cataalogue database
   #   community.mongodb.mongodb_shell:
