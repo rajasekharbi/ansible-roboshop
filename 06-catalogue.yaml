@@ -45,10 +45,10 @@
     ansible.builtin.unarchive:  #unzippping==unacrchive
       src: /tmp/catalogue.zip
       dest: /app
-      remote_src: yes
+      remote_src: yes    # source file already in remote file
 
   - name: install dependencies
-    community.general.npm:
+    community.general.npm:   #installing npm install  #gogle serach ansible nodejs
       path: /app
 
   - name: copy catalogue service
@@ -56,44 +56,44 @@
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
 
-  - name: copy mongo repo  #connecting to mongodb
+  - name: copy mongo repo  
     ansible.builtin.copy:
       src: mongo.repo
       dest: /etc/yum.repos.d/mongo.repo
 
   - name: install mongodb client
     ansible.builtin.package:
-      name: mongodb-mongosh
+      name: mongodb-mongosh #mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
       state: present
 
-  # - name: connnect to mongodb catalogue
-  #   ansible.builtin.command: mongosh mongodb.rajasekhartech.site --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+  # - name: connnect to mongodb catalogue  #data loading
+  #   ansible.builtin.command: mongosh mongodb.rajasekhartech.site --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')" #shell catalogue file
   #   register: catalogue_output  # above command is stores here
 
-  # - name: evaluate cataalogue database
-  #   community.mongodb.mongodb_shell:
-  #     login_host: mongodb.rajasekhartech.site
-  #     eval: db.getMongo().getDBNames().indexOf('catalogue')
-  #   register: catalogue_output
+  - name: evaluate cataalogue database
+    community.mongodb.mongodb_shell:
+      #login_host: mongodb.rajasekhartech.site
+      eval: db.getMongo().getDBNames().indexOf('catalogue')
+    register: catalogue_output
 
-  # - name: print catalogue output
-  #   ansible.builtin.debug:
-  #     msg: "{{ catalogue_output }}"
+  - name: print catalogue output
+    ansible.builtin.debug:
+      msg: "{{ catalogue_output }}"
 
-  # - name: load products into mongodb
-  #   ansible.builtin.shell: mongosh --host mongodb.daws86s.fun </app/db/master-data.js
-  #   when: catalogue_output.stdout | int < 0
+  - name: load products into mongodb
+    ansible.builtin.shell: mongosh --host mongodb.daws86s.fun </app/db/master-data.js
+    when: catalogue_output.stdout | int < 0
 
-  # # # - name: start and enable cataalogue
-  # # #   ansible.builtin.service:
-  # # #     name: catalogue
-  # # #     enabled: yes
-  # # #     state: started
-
-  # # - name: daemon reload enable and start
-  # #   ansible.builtin.systemd_service:
+  # # - name: start and enable cataalogue
+  # #   ansible.builtin.service:
   # #     name: catalogue
-  # #     enabled: true
+  # #     enabled: yes
   # #     state: started
-  # #     daemon_reload: true
+
+  # - name: daemon reload enable and start
+  #   ansible.builtin.systemd_service:
+  #     name: catalogue
+  #     enabled: true
+  #     state: started
+  #     daemon_reload: true
   
