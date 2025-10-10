@@ -16,6 +16,7 @@
      - user
      - shipping
      - payment
+     - cart
      
      
   tasks:                      # creating intances
