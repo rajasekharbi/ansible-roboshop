@@ -63,7 +63,7 @@
 
   - name: install mongodb client
     ansible.builtin.package:
-      name: mongodb-mongosh #mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+      name: mongodb-mongosh #mongosh --host mongodb.rajasekhartech.site </app/db/master-data.js
       state: present
 
   # - name: connnect to mongodb catalogue  #data loading
@@ -81,7 +81,7 @@
       msg: "{{ catalogue_output }}"
 
   - name: load products into mongodb
-    ansible.builtin.shell: mongosh --host mongodb.daws86s.fun </app/db/master-data.js
+    ansible.builtin.shell: mongosh --host mongodb.rajasekhartech.site </app/db/master-data.js
     when: catalogue_output.stdout | int < 0
 
   # # - name: start and enable cataalogue
