@@ -13,6 +13,9 @@
      - mysql
      - rabbitmq
      - catalogue
+     - user
+     - shipping
+     - payment
      
      
   tasks:                      # creating intances
