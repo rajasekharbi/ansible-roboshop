@@ -17,7 +17,7 @@
     ansible.builtin.user:
       name: roboshop
       comment: RoboShop System user
-      system: true  #system user
+      system: true 
       shell: /sbin/nologin
       home: /app
   # Safe to remove directory, because 2nd time if we run it will download freshly. no error if does not exist
@@ -42,10 +42,10 @@
       dest: /tmp/catalogue.zip
 
   - name: extract catalogue application
-    ansible.builtin.unarchive:  #unzippping==unacrchive
+    ansible.builtin.unarchive:  
       src: /tmp/catalogue.zip
       dest: /app
-      remote_src: yes
+     # remote_src: yes
 
   # - name: install dependencies
   #   community.general.npm:
