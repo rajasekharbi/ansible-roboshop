@@ -10,7 +10,7 @@
     - maven
     - mysql #installing mysql command line
 
-  - name: install mysql python libraries
+  - name: install mysql python libraries  #error will appera without this 
     ansible.builtin.pip:
       executable: pip3.9
       name: "{{ item }}"
