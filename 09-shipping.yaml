@@ -8,9 +8,9 @@
       state: present
     loop:
     - maven
-    - mysql #installing mysql command line
+    - mysql
 
-  - name: install mysql python libraries  #error will appera without this 
+  - name: install mysql python libraries
     ansible.builtin.pip:
       executable: pip3.9
       name: "{{ item }}"
@@ -67,14 +67,14 @@
       src: shipping.service
       dest: /etc/systemd/system/shipping.service
 
-  - name: import shipping data into mysql # data loading
+  - name: import shipping data into mysql
     community.mysql.mysql_db:
       state: import
       name: all
-      login_host: mysql.rajasekhartech.site
+      login_host: mysql.daws86s.fun
       login_user: root
       login_password: RoboShop@1
-      target: "{{ item }}"  
+      target: "{{ item }}"
     loop:
     - /app/db/schema.sql
     - /app/db/app-user.sql 
