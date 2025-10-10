@@ -72,7 +72,7 @@
 
   - name: evaluate cataalogue database
     community.mongodb.mongodb_shell:
-      #login_host: mongodb.rajasekhartech.site
+      login_host: mongodb.rajasekhartech.site
       eval: db.getMongo().getDBNames().indexOf('catalogue')
     register: catalogue_output
 
