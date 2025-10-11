@@ -18,7 +18,8 @@
      - payment
      - cart
      - payment
-     - dispatch 
+     - dispatch
+     - frontend
      
   tasks:                      # creating intances
   - name: create ec2 instance
