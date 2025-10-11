@@ -18,8 +18,7 @@
      - payment
      - cart
      - payment
-     - dispatch
-      
+     - dispatch 
      
   tasks:                      # creating intances
   - name: create ec2 instance
