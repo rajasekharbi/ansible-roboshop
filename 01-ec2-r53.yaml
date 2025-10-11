@@ -9,14 +9,14 @@
     #we can pass instances through command line using -e
     instances: 
      - mongodb
-    #  - redis
-    #  - mysql
-    #  - rabbitmq
-    #  - catalogue
-    #  - user
-    #  - shipping
-    #  - payment
-    #  - cart
+     - redis
+     - mysql
+     - rabbitmq
+     - catalogue
+     - user
+     - shipping
+     - payment
+     - cart
      
      
   tasks:                      # creating intances
